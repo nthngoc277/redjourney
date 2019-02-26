@@ -1,24 +1,36 @@
 import React, { Component } from 'react'
 import Goal from './Goal'
+import { Query } from 'react-apollo'
+import gql from 'graphql-tag'
+
+const ALL_GOALS_QUERY = gql`
+  {
+    allGoals {
+      id
+      title
+      description
+    }
+  }
+`
 
 class GoalList extends Component {
   render() {
-    const goalsToRender = [
-      {
-        id: '1',
-        title: 'title 1',
-        description: 'description 1',
-      },
-      {
-        id: '2',
-        title: 'title 2',
-        description: 'description 2',
-      },
-    ]
+    
     return(
-      <div>
-        {goalsToRender.map( goal => <Goal key={goal.id} goal={goal} />)}
-      </div>
+      <Query query={ALL_GOALS_QUERY}>
+        {
+          ({loading, error, data}) => {
+            if(loading) return <div>Loading</div>
+            if(error) return <div>Error</div>
+            const goals = data.allGoals;
+            return (
+              <div>
+                {goals.map(goal => <Goal key={goal.id} goal={goal} />)}
+              </div>
+            )
+          }
+        }
+      </Query>
     )
   }
 }
