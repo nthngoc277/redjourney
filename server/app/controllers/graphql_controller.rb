@@ -4,7 +4,6 @@ class GraphqlController < ApplicationController
     query = params[:query]
     operation_name = params[:operationName]
     context = {
-      session: session,
       current_user: current_user
     }
     result = ServerSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
@@ -17,13 +16,16 @@ class GraphqlController < ApplicationController
   private
 
   def current_user
-    return unless session[:token]
+    return unless token
     crypt = ActiveSupport::MessageEncryptor.new(Rails.application.credentials.secret_key_base.byteslice(0..31))
-    token = crypt.decrypt_and_verify session[:token]
-    user_id = token.gsub('user-id:', '').to_i
+    user_id = crypt.decrypt_and_verify(token).gsub('user-id:', '').to_i
     User.find_by id: user_id
   rescue ActiveSupport::MessageVerifier::InvalidSignature
     nil
+  end
+
+  def token
+    request.headers['Authorization'].gsub("Bearer ", '')
   end
 
   # Handle form data, JSON body, or a blank value
