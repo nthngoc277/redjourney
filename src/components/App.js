@@ -4,6 +4,7 @@ import GoalList from './GoalList'
 import Header from './Header'
 import Login from './Login'
 import { Switch, Route } from 'react-router-dom'
+import CreateGoal from './CreateGoal';
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
         <Header />
         <Switch>
           <Route exact path="/" component={GoalList} />
+          <Route exact path="/create-goal" component={CreateGoal} />
           <Route exact path="/login" component={Login} />
         </Switch>
       </Fragment>
