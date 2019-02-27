@@ -5,5 +5,7 @@ module Types
     field :description, String, null: false
     field :private, Boolean, null: false
     field :status, String, null: true
+    
+    field :created_by, UserType, null: true, method: :user
   end
 end
