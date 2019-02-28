@@ -17,7 +17,7 @@ class GraphqlController < ApplicationController
   private
 
   def current_user
-    return unless token
+    return unless token.present?
     crypt = ActiveSupport::MessageEncryptor.new(Rails.application.credentials.secret_key_base.byteslice(0..31))
     user_id = crypt.decrypt_and_verify(token).gsub('user-id:', '').to_i
     User.find_by id: user_id
