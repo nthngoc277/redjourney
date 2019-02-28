@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
 
@@ -27,27 +27,36 @@ class CreateGoal extends Component {
   render() {
     const { title, description } = this.state
     return (
-      <div>
-        <input
-          value={title}
-          onChange={e => this.setState({title: e.target.value})}
-          type='text'
-          placeholder='What is the title of your goal?'
-        />
-        <input
-          value={description}
-          onChange={e => this.setState({description: e.target.value})}
-          type='text'
-          placeholder='Please put some description to make the goal clear'
-        />
-        <Mutation 
+      <Fragment>
+        <h2>Create goal</h2>
+        <div class="form-group">
+          <label for="title">What is the title of your goal?</label>
+          <input 
+            class="form-control" 
+            id="title"
+            value={title}
+            onChange={e => this.setState({title: e.target.value})}
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="description">Please put some description to make the goal clear</label>
+          <textarea
+            rows="5" 
+            class="form-control" 
+            id="description"
+            value={description}
+            onChange={e => this.setState({description: e.target.value})}
+          />
+        </div>
+        <Mutation
           mutation={CREATE_GOAL_MUTATION} 
           variables={{ title, description }}
           onCompleted={() => this.props.history.push('/my-goals')}
         >
-          {postMutation => <button onClick={postMutation}>Submit</button>}
+          {postMutation => <button class="btn btn-primary" onClick={postMutation}>Create goal</button>}
         </Mutation>
-      </div>
+      </Fragment>
     )
   }
 }
