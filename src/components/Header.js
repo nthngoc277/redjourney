@@ -10,12 +10,12 @@ class Header extends Component {
       <div>
         <h6>REDjourney - a journey to new you</h6>
         <ul>
-          <li><Link to="/">my goals</Link></li>
+          {authToken && (<li><Link to="/my-goals">my goals</Link></li>)}
           {authToken && (<li><Link to="/create-goal">create goal</Link></li>)}
           {authToken ? (
             <li onClick={() => {
               localStorage.removeItem(AUTH_TOKEN)
-              this.props.history.push(`/`)
+              this.props.history.push('/login')
             }}>
               logout
             </li>

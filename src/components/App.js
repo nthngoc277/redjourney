@@ -12,7 +12,7 @@ class App extends Component {
       <Fragment>
         <Header />
         <Switch>
-          <Route exact path="/" component={GoalList} />
+          <Route exact path="/my-goals" component={GoalList} />
           <Route exact path="/create-goal" component={CreateGoal} />
           <Route exact path="/login" component={Login} />
         </Switch>

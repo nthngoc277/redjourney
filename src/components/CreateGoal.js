@@ -43,7 +43,7 @@ class CreateGoal extends Component {
         <Mutation 
           mutation={CREATE_GOAL_MUTATION} 
           variables={{ title, description }}
-          onCompleted={() => this.props.history.push('/')}
+          onCompleted={() => this.props.history.push('/my-goals')}
         >
           {postMutation => <button onClick={postMutation}>Submit</button>}
         </Mutation>
