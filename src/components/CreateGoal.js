@@ -3,10 +3,14 @@ import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
 
 const CREATE_GOAL_MUTATION = gql`
-  mutation CreateGoalMutation($title: String!, $description: String!){
+  type Task {
+    description: String
+  }
+  mutation CreateGoalMutation($title: String!, $description: String!, $tasks: [Task]){
     createGoal(
       title: $title, 
-      description: $description
+      description: $description,
+      tasks: $tasks
       ) {
       id
       title
@@ -114,7 +118,7 @@ class CreateGoal extends Component {
         </div>
         <Mutation
           mutation={CREATE_GOAL_MUTATION} 
-          variables={{ title, description }}
+          variables={{ title, description, tasks }}
           onCompleted={() => this.props.history.push('/my-goals')}
         >
           {postMutation => <button className="btn btn-primary btn-block" onClick={postMutation}>Create goal</button>}
