@@ -7,5 +7,6 @@ module Types
     field :status, String, null: true
     field :created_at, String, null: true
     field :created_by, UserType, null: true, method: :user
+    field :tasks, [Types::TaskType], null: true
   end
 end
