@@ -47,9 +47,9 @@ class Login extends Component {
         <h4>{login ? 'Login' : 'Sign Up'}</h4>
 
         { !login && ( 
-          <div class="form-group">
+          <div className="form-group">
             <input 
-              class="form-control" 
+              className="form-control" 
               id="name" 
               placeholder="What's your name?"
               value={name}
@@ -58,23 +58,23 @@ class Login extends Component {
           </div>)
         }
 
-        <div class="form-group">
+        <div className="form-group">
           <input 
             type="email" 
-            class="form-control" 
+            className="form-control" 
             id="email" 
             aria-describedby="emailHelp" 
             placeholder="What's your email?"
             value={email}
             onChange={e => this.setState({ email: e.target.value })}
           />
-          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
 
-        <div class="form-group">
+        <div className="form-group">
           <input 
             type="password" 
-            class="form-control" 
+            className="form-control" 
             id="password" 
             placeholder="Please choose a safe password"
             value={password}
@@ -89,12 +89,12 @@ class Login extends Component {
             onCompleted={data => this._confirm(data)}
           >
             {mutation => (
-              <button class="btn btn-primary" onClick={mutation}>
+              <button className="btn btn-primary" onClick={mutation}>
                 {login ? 'login' : 'create account'}
               </button>
             )}
           </Mutation>
-          <button class="btn btn-light" onClick={() => this.setState({login: !login})}>
+          <button className="btn btn-light" onClick={() => this.setState({login: !login})}>
             {login? 'need to create an account?' : 'already have an account?'}
           </button>
         </div>

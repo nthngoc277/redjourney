@@ -55,42 +55,45 @@ class CreateGoal extends Component {
     return (
       <Fragment>
         <h2>Create goal</h2>
-        <div class="form-group">
-          <label for="title">What is the title of your goal?</label>
+        <div className="form-group">
+          <label>What is the title of your goal?</label>
           <input 
-            class="form-control" 
+            className="form-control" 
             id="title"
             value={title}
             onChange={e => this.setState({title: e.target.value})}
           />
         </div>
 
-        <div class="form-group">
-          <label for="description">Please put some description to make the goal clear</label>
+        <div className="form-group">
+          <label>Please put some description to make the goal clear</label>
           <textarea
             rows="5" 
-            class="form-control" 
+            className="form-control" 
             id="description"
             value={description}
             onChange={e => this.setState({description: e.target.value})}
           />
         </div>
 
-        <div class="form-group">
-          <label for="description">What will you do to complete this goal?</label>
+        <div className="form-group">
+          <label>What will you do to complete this goal?</label>
           {tasks.map((task, idx) => (
-            <div class="input-group task">
-              <input 
+            <div
+              key={idx}
+              className="input-group task"
+            >
+              <input
                 type="text" 
-                class="form-control"
+                className="form-control"
                 placeholder={`Task #${idx + 1} description`}
                 onChange={this.handleTaskDescriptionChange(idx)}
                 value={task.description}
               />
-              <div class="input-group-append">
+              <div className="input-group-append">
                 <button 
                   type="button"
-                  class="btn btn-outline-secondary"
+                  className="btn btn-outline-secondary"
                   onClick={this.handleRemoveTask(idx)}
                 >
                   -
@@ -100,10 +103,10 @@ class CreateGoal extends Component {
           ))}
         </div>
 
-        <div class="form-group">
+        <div className="form-group">
           <button 
             type="button" 
-            class="btn btn-btn btn-outline-secondary"
+            className="btn btn-btn btn-outline-secondary"
             onClick={this.handleAddTask}
           >
             + Add more tasks
@@ -114,7 +117,7 @@ class CreateGoal extends Component {
           variables={{ title, description }}
           onCompleted={() => this.props.history.push('/my-goals')}
         >
-          {postMutation => <button class="btn btn-primary btn-block" onClick={postMutation}>Create goal</button>}
+          {postMutation => <button className="btn btn-primary btn-block" onClick={postMutation}>Create goal</button>}
         </Mutation>
       </Fragment>
     )
