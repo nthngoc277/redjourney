@@ -3,10 +3,7 @@ import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
 
 const CREATE_GOAL_MUTATION = gql`
-  type Task {
-    description: String
-  }
-  mutation CreateGoalMutation($title: String!, $description: String!, $tasks: [Task]){
+  mutation CreateGoalMutation($title: String!, $description: String!, $tasks: [TaskInput!]){
     createGoal(
       title: $title, 
       description: $description,
