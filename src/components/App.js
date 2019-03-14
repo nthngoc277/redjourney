@@ -11,7 +11,7 @@ class App extends Component {
     return (
       <Fragment>
         <Header />
-        <div class='container'>
+        <div className='container'>
           <Switch>
             <Route exact path="/my-goals" component={GoalList} />
             <Route exact path="/create-goal" component={CreateGoal} />
