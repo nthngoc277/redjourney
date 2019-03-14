@@ -1,6 +1,6 @@
 # introduction
 
-This is a simple project that I used to try to integrate Rails + ReactJS + GraphQL.
+This is a simple project that I use to integrate Rails + ReactJS + GraphQL when learning GraphQL.
 
 About the idea, I found it on the way I try to get out of depression and improve myself. It is meditation, do one thing at a time and do it good, take note the thing I have learnt, the thing I am grateful for.
 
